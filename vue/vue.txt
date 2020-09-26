@@ -1,0 +1,185 @@
+#### day01笔记
+
+##### 1，四阶段前导
+
+------
+
+1. ###### 前端内容        
+
+   - html/css / html5  css3
+   - 项目 (移动端 ， PC)        
+   - 目标 :  熟练掌握静态页面 (语义化， 结构化， 清晰化)
+   - 实现 (HTML语义化清晰化) 多看 ， 多写， 
+
+2. ###### JavaScript 
+
+   - **javascript  / jquery  / touch /ajaxjs 高效**
+   - 完成交互
+   - 提高交互自己如何思考
+   - NODE
+   - 框架
+   - 小程序
+   - 技术指导 
+     - NODE
+     - node模块 http/fs/url/path... express, koa, mysql, es6, webpack
+     - 目标: 对于前后端有个完整的认知;   增进es6语法知识， 掌握webpack 使用。
+
+3. ######    框架    
+
+   - **框架  Vue     React **
+
+     - 时间  19T  13Tvue(5T), 6T React  (1T)
+     - 需要掌握实际工作中运用技术内容
+     - ***量达到质变！！！！***(vue项目做两遍)， 语法内容 至少5遍	       
+     - 能力要求:  
+       - ​	***阅读文档能力！！!***          
+       -    **解决问题能力  !   (问题点， 如何解决)**               
+       -    **实战能力！！！！！！！**
+
+   - 小程序  
+
+     - ​	小程序     数据可视化
+
+     技术指导
+
+     -    串讲， 回顾， 项目！！！！
+
+#### 2,  vue介绍
+
+------
+
+##### 2.    1，什么是 vue框架
+
+- ​		 文档地址  ：   https://cn.vuejs.org/
+
+- ​         作者 :  尤雨溪
+
+-   含义: **Vue 是一套用于构建用户界面的渐进式框架。**与其它框架不同,Vue是被设计师认可自底向上应用。**Vue的核心库只关注视图层。**不仅容易上手，还便于第三方库或文件 项目整合。另一方面，当与现代化工具支持相结合使用时，Vue 也完全能够为复杂单页面应用提供驱动。           但是Vue.js解决了这些问题，这些问题都在Vue中小时
+
+  #### 2.2，为什么使用vue
+
+  - 我们知道完整网页是由DOM元素组成视图结构，再加上CSS样式修饰，结合javascript实现用户进行交互。我们把基本的试图开发层，这部分就是Vue核心关注的部分，为神魔关注他呢?因为一些页面元素非常多，结构之间还存在依赖或者依存关系，代码上就会出现很多问题。
+
+    用过 **JQuery**的开发人员都有这样的体会，在页面元素不多的时候，有时候需要一层层向上寻找父辈元素，随着项目规模不断扩大，页面结构和代码会变得越来越臃肿，而JQuery选择器DOM操作本身也存在性能缺失问题，原本轻巧简介JQuery代码变得无从下手增加 维护成本。
+
+    但是Vue.js解决问题，这些问题都将在Vue中消失。
+
+    #### 2.3 特点   
+
+    - **轻量级框架**
+    - **双向绑定**
+    - **指令**
+    - **客户端路由**
+    - **状态管理**	
+
+#### 3，基础使用
+
+------
+
+- ​    开发环境  
+
+  - ​		生产环境:   开发结束， 部署
+
+    ```js
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    ```
+
+    
+
+  - 开发环境:  开发中
+
+    ```html
+    <!-- 生产环境版本，优化了尺寸和速度 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    
+    ```
+
+    #### 3.2,  基础使用
+
+    -    安装  
+
+    - ​     挂载
+
+    - ​    实例vue对象
+
+    - ```html
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          <title>Document</title>
+          <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      </head>
+      <body >
+          <!-- 写一个标签容器 -->  
+          <div id="app">
+              <h1>{{msg}}</h1>
+              <p>{{chbds}}</p>
+              <h5>{{htmlstr}}</h5>
+          </div>
+         
+              <h1>{{msg}}</h1>
+              <p>{{chbds}}</p>
+              <h5>{{htmlstr}}</h5>
+          <script>
+              
+          let vm = new Vue({//第三步  实例化一个Vue对象
+              el:"#app",
+              data:{
+                  msg:"常山",
+                  chbds:"data 里面的数据我们可以通过模板中通过插值表达式进行展示",
+                  htmlstr:'<b>8866</b>'
+              }
+          });
+      
+          setInterval(() => {
+              vm.msg += "我来了"
+          }, 1000)
+      	
+      	//当页面data里面 的数据发生改变视图 也会跟着改变双向数据 绑定
+      
+              console.log(vm);
+              console.log(vm.msg);
+              console.log(vm.htmlstr);
+      
+          //挂载节点 将这个vue实例作用节点范围关联起来 
+          //data  数据对象  节点范围使用到的数据
+          //data 里面的数据我们可以通过模板中通过插值表达式进行展示！{{data中变量}}
+          //data 里面的变量数据，最后变成了这个vue实例 属性
+      	//data 里面的变量数据一旦发生改变页面数据会自动更新 ！
+      
+          //vue.js:634 [Vue warn]: Do not mount Vue to <html> or <body> - mount to normal elements instead.
+          // 写在body 上了
+      
+          //vue基础使用.html:18 Uncaught ReferenceError: Vue is not defined
+          //没有引入vue  
+      
+          ///{{msg}}  写在标签外面访问不到
+          </script>
+      </body>
+      </html>
+      ```
+
+    - 注意 点:
+
+      -  el  挂载  节点  将这个vue实例合作用节点范围关联起来 
+
+      - data  数据对象  节点 范围 内可以使用到数据
+
+      - data里面数据，我们可以在模板中通过插值表达式进行展示！
+
+        ```
+        {{data中变量}}
+        ```
+
+        
+
+
+
+#### 4，常见指令
+
+------
+
