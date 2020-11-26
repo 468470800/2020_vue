@@ -239,3 +239,76 @@
 </html>
 ```
 
+#### vue 轮播图
+
+```vue
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo{
+            margin: 0;
+            padding: 0;
+        }
+
+        .demo li{
+            width: 500px;
+            height: 400px;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+   <div id="app">
+    <ul class="demo">
+        <li v-show="i === activeIndex" v-for="(item,i) in listimg" >
+            <img :src="item.img" alt="" :style="{width: w ,height:'calc(100vh * 0.6)'}">
+        </li>
+    </ul>
+   </div>
+    <script src="../vue/vue.js"></script>
+    <script>
+        let vm = new Vue({
+            el:"#app",           
+            data(){
+                return{
+                    activeIndex:0,
+                    w:"calc(100vw * 0.3)",
+                    listimg:[
+                        {
+                            img:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=515472328,331573341&fm=26&gp=0.jpg"
+                        }   ,
+                        {
+                         img:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2246284282,3299805659&fm=26&gp=0.jpg"
+                        },
+                       {
+                           img:"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3768851216,4067832036&fm=26&gp=0.jpg"
+                       },
+                        {
+                            img:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1136384998,901029167&fm=26&gp=0.jpg"
+                        },
+                        {
+                            img:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1911379816,1115164849&fm=26&gp=0.jpg"
+                        }
+                    ]
+                }
+            },
+            mounted(){
+                setInterval(()=>{
+                    this.activeIndex++
+                    if(this.activeIndex === this.listimg.length){
+                        this.activeIndex = 0
+                    }
+                },1000)
+            }
+        })
+
+
+    </script>
+</body>
+</html>
+```
+
