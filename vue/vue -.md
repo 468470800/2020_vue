@@ -312,3 +312,46 @@
 </html>
 ```
 
+#### 回顾生命周期
+
+1. 初始化
+2. 执行 beforeCreate 钩子函数 (如果有)
+3. 初始化data数据
+4. 判断是否传入 el:" ",(如果有)
+5. 如果没有传入，则等到实例vm主动调用$mount()在继续执行
+6. 如果传入el,在判断是否有传template模板选项
+7. 如果没有传入template,则将el对容器内的所有内容当成，template
+8. template通过render函数编译成vdom成DOM
+
+```html
+<div id="app">
+    <input v-model='nickname'/>
+</div>
+
+let domtree = {
+domProps:{
+    id:'app',
+     name:"myname",
+    'class':"container",
+	slots:[
+		{
+			tag:"input",
+				domProps:{
+value:nickname
+},
+onClcik(e){
+this.value = e.target.value
+}
+}
+]
+}
+}
+```
+
+10. 执行beforMount钩子函数 (如果有)
+11. 将虚拟DOM替换el容器中旧内容 (HTML覆盖旧的模板)
+12. 执行 mounted钩子函数 (如果有)
+13. data数据发生改变，先走beforeUpdate, VDOM更细完成 DOM 后，走updated
+14. 当组件切换或者挑战路由销毁VUE实例时，调用beforDestroy钩子函数 (如果有)
+15. 接触事件绑定销毁组件
+16. 执行destroyed钩子函数 (如果有)
